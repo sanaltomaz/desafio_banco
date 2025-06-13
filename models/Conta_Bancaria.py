@@ -46,12 +46,12 @@ class ContaBancaria:
 
         Retorna o valor do saldo atualizado.
         """
+        
         if valor_saque <= 0 or type(valor_saque) not in [float, int]:
             raise ValueError("O valor do saque é inválido, verifique o valor informado.")
         
         usar_limite(self, valor_saque)  # Chama a função usar_limite para verificar e realizar o saque
         
-        print(f"Saque de R${valor_saque:.2f} realizado com sucesso na conta {self.numero}.") 
         input("Pressione Enter para continuar...")
         clear_console()  # Limpa o console após o saque
 
@@ -74,6 +74,7 @@ class ContaBancaria:
             raise ValueError("Saldo insuficiente para realizar a transferência, verifique o valor informado.")
 
         self.saldo -= valor_transferencia
+
         conta_destino.depositar(valor_transferencia) # Usar o método depositar da conta de destino
         print(f"Transferência de R${valor_transferencia:.2f} realizada com sucesso para a conta {conta_destino.numero}.")
         print("Novo saldo:", self.saldo)
