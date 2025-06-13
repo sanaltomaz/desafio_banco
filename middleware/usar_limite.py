@@ -1,31 +1,67 @@
-def usar_limite (self, valor_saque):
-    if valor_saque <= self.saldo:
-            self.saldo -= valor_saque # O saldo é reduzido pelo valor do saque
-            print(f"Saque de R${valor_saque:.2f} realizado com sucesso na conta {self.numero}.") 
-            print("Saldo atual:", self.saldo)
-            return self.saldo
-    else:
-        print("Saldo insuficiente para realizar o saque. Deseja usar seu limite?")
-        print("Saldo atual:", self.saldo)
-        print("Limite disponível:", self.limite)
-        print("Fatura atual:", self.fatura)
-        print("1. Sim")
-        print("2. Não")
-        escolha = input("Escolha uma opção: ")
-        if escolha == '1':
-            valor_restante = valor_saque - self.saldo
+def usar_limite(self, valor, operacao, usar_limite=False):
+    """
+    Atualiza saldo, limite e fatura conforme a operação bancária.
+
+    Args:
+        valor (float): Valor da operação.
+        operacao (str): Tipo da operação: 'saque', 'deposito' ou 'transferencia'.
+        usar_limite (bool): Se True, permite usar o limite em operações de débito.
+
+    Returns:
+        dict: {'sucesso': bool, 'saldo': float, 'limite': float, 'fatura': float, 'mensagem': str}
+
+    Raises:
+        ValueError: Se o valor for inválido ou não houver saldo/limite suficiente.
+    """
+    # Valida se o valor é positivo e do tipo correto
+    if valor <= 0 or not isinstance(valor, (float, int)):
+        raise ValueError("O valor é inválido, verifique o valor informado.")
+
+    # Operação de depósito: adiciona valor ao saldo
+    if operacao == 'deposito':
+        self.saldo += valor  # Atualiza saldo com o valor depositado
+        return {
+            'sucesso': True,
+            'saldo': self.saldo,
+            'limite': self.limite,
+            'fatura': self.fatura,
+            'mensagem': 'Depósito realizado com sucesso.'
+        }
+
+    # Operações de saque ou transferência
+    elif operacao in ['saque', 'transferencia']:
+        if valor <= self.saldo:
+            # Se há saldo suficiente, debita do saldo normalmente
+            self.saldo -= valor
+            return {
+                'sucesso': True,
+                'saldo': self.saldo,
+                'limite': self.limite,
+                'fatura': self.fatura,
+                'mensagem': f'{operacao.capitalize()} realizado com sucesso.'
+            }
+        elif usar_limite:
+            # Se não há saldo suficiente, verifica se pode usar o limite
+            valor_restante = valor - self.saldo  # Calcula quanto falta para completar a operação
             if valor_restante <= self.limite:
-                self.fatura += valor_restante # O valor restante é adicionado à fatura
-                self.limite -= valor_restante # O limite é consumido
-                self.saldo = 0.0 # O saldo se torna zero
-                print("Saque realizado com sucesso usando o limite.")
-                print("Saldo atual:", self.saldo)
-                print("Limite disponível:", self.limite)
-                print("Fatura atual:", self.fatura)
-                return self.saldo
+                # Se o limite cobre o valor restante, atualiza fatura e limite
+                self.fatura += valor_restante
+                self.limite -= valor_restante
+                self.saldo = 0.0  # Zera o saldo, pois foi totalmente utilizado
+                return {
+                    'sucesso': True,
+                    'saldo': self.saldo,
+                    'limite': self.limite,
+                    'fatura': self.fatura,
+                    'mensagem': f'{operacao.capitalize()} realizado com sucesso usando o limite.'
+                }
             else:
-                raise ValueError("Saldo e limite insuficientes para realizar o saque, verifique o valor informado.")
-        elif escolha == '2':
-            raise ValueError("Seu saldo é insuficiente para realizar o saque, verifique o valor informado.")
+                # Nem saldo nem limite são suficientes
+                raise ValueError("Saldo e limite insuficientes para realizar a operação, verifique o valor informado.")
         else:
-            raise ValueError("Opção inválida.")
+            # Não autorizado a usar o limite e saldo insuficiente
+            raise ValueError("Saldo insuficiente para realizar a operação e uso do limite não autorizado.")
+    else:
+        # Operação não reconhecida
+        raise ValueError("Operação inválida. Use 'saque', 'deposito' ou 'transferencia'.")
+    
