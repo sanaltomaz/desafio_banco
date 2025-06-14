@@ -1,1 +1,0 @@
-# Lógica das Operações bancárias

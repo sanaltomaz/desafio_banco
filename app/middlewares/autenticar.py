@@ -6,7 +6,6 @@ def validar_senha():
         def wrapper(self, *args, **kwargs):
             senha = kwargs.get('senha', None)
             if not senha:
-                # Solicita a senha do usuário com '*' enquanto digita
                 senha = getpass.getpass("Digite sua senha: ")
             if senha != self.senha:
                 raise ValueError("Senha inválida.")

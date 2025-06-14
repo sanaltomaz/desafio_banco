@@ -1,21 +1,19 @@
-from middleware.usar_limite import usar_limite
-from middleware.validar_senha import validar_senha
-import os
-
-def clear_console():
-    os.system('cls' if os.name == 'nt' else 'clear')
+from app.middlewares.autenticar import validar_senha
+from app.middlewares.transacoes import usar_limite
+from app.core.utils import clear_console
 
 class ContaBancaria:
-    def __init__(self, numero, agencia, saldo=0.0, limite=0.0, senha="", fatura = 0.0):
+    def __init__(self, numero, agencia, banco, saldo=0.0, limite=0.0, senha="", fatura=0.0):
         self.numero = numero
         self.agencia = agencia
+        self.banco = banco
         self.saldo = saldo
         self.limite = limite
         self.senha = senha
         self.fatura = fatura
 
-    def __str__ (self):
-        return f"Conta {self.numero} - Agência {self.agencia} - Saldo: R${self.saldo:.2f} - Limite: R${self.limite:.2f} - Fatura: R${self.fatura:.2f}"
+    def __str__(self):
+        return f"Conta {self.numero} - Agência {self.agencia} - Banco {self.banco}- Saldo: R${self.saldo:.2f} - Limite: R${self.limite:.2f} - Fatura: R${self.fatura:.2f}"
 
     @validar_senha()  # Decorador para validar a senha antes de realizar operações
     def depositar(self, valor_deposito, senha="", usar_limite_flag=True):

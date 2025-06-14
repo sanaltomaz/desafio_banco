@@ -19,7 +19,7 @@ def usar_limite(self, valor, operacao, usar_limite=False):
 
     # Operação de depósito: adiciona valor ao saldo
     if operacao == 'deposito':
-        self.saldo += valor  # Atualiza saldo com o valor depositado
+        self.saldo += valor  
         return {
             'sucesso': True,
             'saldo': self.saldo,
