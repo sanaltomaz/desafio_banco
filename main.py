@@ -1,10 +1,10 @@
 import unittest
-from models.Conta_Bancaria import ContaBancaria
+from app.models.conta import ContaBancaria
 
 class TestContaBancaria(unittest.TestCase):
     def setUp(self):
-        self.conta1 = ContaBancaria(numero="12345", agencia="001", saldo=1000.0, senha="1")
-        self.conta2 = ContaBancaria(numero="67890", agencia="002", saldo=500.0, senha="2")
+        self.conta1 = ContaBancaria(numero="12345", agencia="001", banco="Banco A", saldo=1000.0, senha="1")
+        self.conta2 = ContaBancaria(numero="67890", agencia="002", banco="Banco B", saldo=500.0, senha="2")
 
     def test_transferencia_autorizada(self):
         self.conta1.transferir(300, conta_destino=self.conta2, senha="1")
