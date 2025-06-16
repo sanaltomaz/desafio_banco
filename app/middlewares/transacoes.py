@@ -1,4 +1,4 @@
-def autentificar(self, valor, operacao, usar_limite=False):
+def validar_transacoes(self, valor, operacao, usar_limite=False):
     # Valida se o valor é positivo e do tipo correto
     if not isinstance(valor, (float, int)) or valor <= 0:
         raise ValueError("O valor é inválido, verifique o valor informado.")

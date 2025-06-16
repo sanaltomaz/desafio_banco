@@ -1,4 +1,4 @@
-from app.middlewares.transacoes import autentificar
+from app.middlewares.transacoes import validar_transacoes
 from app.core.utils import clear_console
 
 def depositar(conta, valor_deposito, usar_limite_flag=True):
@@ -7,7 +7,7 @@ def depositar(conta, valor_deposito, usar_limite_flag=True):
         raise ValueError("O valor do depósito é inválido. Verifique o valor informado.")
 
     if usar_limite_flag:
-        autentificar(conta, valor_deposito, "deposito", usar_limite=True)
+        validar_transacoes(conta, valor_deposito, "deposito", usar_limite=True)
     else:
         conta.saldo += valor_deposito
 
