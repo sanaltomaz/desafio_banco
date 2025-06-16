@@ -1,6 +1,9 @@
 from app.middlewares.autenticar import validar_senha
-from app.middlewares.transacoes import usar_limite
+from app.middlewares.transacoes import autentificar
 from app.core.utils import clear_console
+from app.services.deposito import depositar
+from app.services.saque import sacar
+from app.services.transferencia import transferir
 
 class ContaBancaria:
     def __init__(self, numero, agencia, banco, saldo=0.0, limite=0.0, senha="", fatura=0.0):

@@ -1,20 +1,6 @@
-def usar_limite(self, valor, operacao, usar_limite=False):
-    """
-    Atualiza saldo, limite e fatura conforme a operação bancária.
-
-    Args:
-        valor (float): Valor da operação.
-        operacao (str): Tipo da operação: 'saque', 'deposito' ou 'transferencia'.
-        usar_limite (bool): Se True, permite usar o limite em operações de débito.
-
-    Returns:
-        dict: {'sucesso': bool, 'saldo': float, 'limite': float, 'fatura': float, 'mensagem': str}
-
-    Raises:
-        ValueError: Se o valor for inválido ou não houver saldo/limite suficiente.
-    """
+def autentificar(self, valor, operacao, usar_limite=False):
     # Valida se o valor é positivo e do tipo correto
-    if valor <= 0 or not isinstance(valor, (float, int)):
+    if not isinstance(valor, (float, int)) or valor <= 0:
         raise ValueError("O valor é inválido, verifique o valor informado.")
 
     # Operação de depósito: adiciona valor ao saldo
@@ -64,4 +50,3 @@ def usar_limite(self, valor, operacao, usar_limite=False):
     else:
         # Operação não reconhecida
         raise ValueError("Operação inválida. Use 'saque', 'deposito' ou 'transferencia'.")
-    
