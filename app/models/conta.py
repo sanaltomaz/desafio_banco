@@ -1,4 +1,4 @@
-from app.middlewares.autenticar import validar_senha
+from app.middlewares.validar_senha import validar_senha
 from app.services.deposito import depositar
 from app.services.saque import sacar
 from app.services.transferencia import transferir

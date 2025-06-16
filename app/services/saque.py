@@ -1,4 +1,4 @@
-from app.middlewares.transacoes import validar_transacoes
+from app.services.transacoes import validar_transacoes
 from app.core.utils import clear_console
 
 def sacar(conta, valor_saque, usar_limite_flag=True):
