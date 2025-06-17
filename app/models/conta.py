@@ -2,9 +2,12 @@ from app.middlewares.validar_senha import validar_senha
 from app.services.deposito import depositar
 from app.services.saque import sacar
 from app.services.transferencia import transferir
+from app.validators.conta_validator import validar_dados_conta
 
 class ContaBancaria:
     def __init__(self, numero, agencia, banco, saldo=0.0, limite=0.0, senha="", fatura=0.0):
+        validar_dados_conta(numero, agencia, banco, saldo, limite, senha, fatura)  # Valida os dados da conta
+        # Inicializa os atributos da conta bancária
         self.numero = numero
         self.agencia = agencia
         self.banco = banco
