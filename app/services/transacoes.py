@@ -11,8 +11,7 @@ def validar_deposito(self, valor_deposito, senha=""):
         'sucesso': True,
         'saldo': self.saldo,
         'limite': self.limite,
-        'fatura': self.fatura,
-        'mensagem': 'Depósito realizado com sucesso.'
+        'fatura': self.fatura
     }
 
 def validar_saque(self, valor_saque, senha="", usar_limite=False):
@@ -29,7 +28,6 @@ def validar_saque(self, valor_saque, senha="", usar_limite=False):
             'saldo': self.saldo,
             'limite': self.limite,
             'fatura': self.fatura,
-            'mensagem': 'Saque realizado com sucesso.'
         }
     elif usar_limite:
         valor_restante = valor_saque - self.saldo
@@ -41,8 +39,7 @@ def validar_saque(self, valor_saque, senha="", usar_limite=False):
                 'sucesso': True,
                 'saldo': self.saldo,
                 'limite': self.limite,
-                'fatura': self.fatura,
-                'mensagem': 'Saque realizado com sucesso usando o limite.'
+                'fatura': self.fatura
             }
         else:
             raise ValueError("Saldo e limite insuficientes para realizar o saque.")
@@ -64,7 +61,6 @@ def validar_transferencia(self, valor_transferencia, conta_destino, senha="", us
             'saldo': self.saldo,
             'limite': self.limite,
             'fatura': self.fatura,
-            'mensagem': 'Transferência realizada com sucesso.'
         }
     elif usar_limite:
         valor_restante = valor_transferencia - self.saldo
@@ -107,5 +103,4 @@ def usar_limite(self, valor, senha="", usar_limite_flag=False):
         'saldo': self.saldo,
         'limite': self.limite,
         'fatura': self.fatura,
-        'mensagem': 'Limite utilizado com sucesso.'
     }
