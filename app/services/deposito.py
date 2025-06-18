@@ -1,4 +1,4 @@
-from app.services.transacoes import validar_deposito
+from app.services.transacoes_validators import validar_deposito
 from app.core.utils import clear_console
 
 def depositar(conta, valor_deposito, senha=""):

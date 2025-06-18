@@ -1,4 +1,4 @@
-from app.services.transacoes import validar_saque
+from app.services.transacoes_validators import validar_saque
 from app.core.utils import clear_console
 
 def sacar(conta, valor_saque, senha=""):

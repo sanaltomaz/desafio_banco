@@ -1,5 +1,5 @@
 from app.services.deposito import depositar
-from app.services.transacoes import validar_transferencia
+from app.services.transacoes_validators import validar_transferencia
 from app.core.utils import clear_console
 
 def transferir(conta_origem, valor_transferencia, conta_destino, senha=""):
