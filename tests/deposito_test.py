@@ -1,3 +1,4 @@
+from multiprocessing import context
 import unittest
 from app.models.conta import ContaBancaria
 from app.services.deposito import depositar
@@ -26,6 +27,7 @@ class TestDeposito(unittest.TestCase):
         valor_deposito = "200"  # Tipo incorreto (string)
         with self.assertRaises(ValueError):
             depositar(self.conta, valor_deposito)
+        self.assertEqual(str(context.exception), "O valor do depósito deve ser um número válido.")
 
 if __name__ == "__main__":
     unittest.main()

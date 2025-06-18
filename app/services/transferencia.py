@@ -1,11 +1,13 @@
 from app.services.deposito import depositar
 from app.services.transacoes_validators import validar_transferencia
-from app.core.utils import clear_console
+from app.core.utils import clear_console, transformar_valor
 
 def transferir(conta_origem, valor_transferencia, conta_destino, senha=""):
     """ Serviço para realizar transferência entre contas bancárias. """
-    if valor_transferencia <= 0 or not isinstance(valor_transferencia, (int, float)):
-        raise ValueError("O valor da transferência é inválido, verifique o valor informado.")
+    valor_transferencia = transformar_valor(valor_transferencia)
+
+    if valor_transferencia <= 0:
+        raise ValueError("Valor mínimo de transferência é R$0.01.")
 
     validar_transferencia(conta_origem, valor_transferencia, conta_destino)
 
