@@ -1,4 +1,4 @@
-# Validadores para a classe ContaBancaria
+# from app.models.cliente import Cliente
 
 def validar_dados_conta(numero, agencia, banco, saldo, limite, senha, fatura):
     if not isinstance(numero, str) or not numero.isdigit():
@@ -21,3 +21,11 @@ def validar_dados_conta(numero, agencia, banco, saldo, limite, senha, fatura):
     
     if not isinstance(fatura, (int, float)) or fatura < 0:
         raise ValueError("Fatura deve ser um número positivo ou zero.")
+
+    # Validação do titular (deve ser uma instância da classe Cliente)
+    # if not isinstance(titular, Cliente):
+        # raise ValueError("Titular deve ser uma instância da classe Cliente.")
+
+    # Validação do id_cliente (deve ser igual ao id do titular)
+    # if not hasattr(titular, 'id') or titular.id != id_cliente:
+        # raise ValueError("id_cliente deve corresponder ao id do titular.")

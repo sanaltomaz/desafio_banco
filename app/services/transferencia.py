@@ -9,11 +9,11 @@ def transferir(conta_origem, valor_transferencia, conta_destino, senha=""):
     if valor_transferencia <= 0:
         raise ValueError("Valor mínimo de transferência é R$0.01.")
 
-    validar_transferencia(conta_origem, valor_transferencia, conta_destino)
-
     if conta_origem.numero == conta_destino.numero:
         raise ValueError("Não é possível transferir para a mesma conta.")
     
+    validar_transferencia(conta_origem, valor_transferencia, conta_destino)
+
     # Realiza o depósito na conta de destino
     depositar(conta_destino, valor_transferencia)
 

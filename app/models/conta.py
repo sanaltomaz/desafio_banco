@@ -11,6 +11,8 @@ class ContaBancaria:
         self.numero = numero
         self.agencia = agencia
         self.banco = banco
+        # self.titular = titular  # Instância da classe Cliente
+        # self.id_cliente = id_cliente if id_cliente is not None else titular.id  # Associa o id_cliente ao id do titular
         self.saldo = saldo
         self.limite = limite
         self.senha = senha
