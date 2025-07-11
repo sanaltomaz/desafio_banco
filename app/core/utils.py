@@ -9,6 +9,6 @@ def transformar_valor(valor):
     if isinstance(valor, str):
         try:
             valor = float(valor)
-        except ValueError:
-            raise ValueError("O valor do depósito deve ser um número válido.")
+        except (ValueError, TypeError):
+            raise ValueError("O valor deve ser um número válido.")
     return valor

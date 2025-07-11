@@ -1,23 +1,15 @@
 import unittest
-from app.models.cliente import Cliente
 from app.models.conta import ContaBancaria
 from app.services.deposito import depositar
 
 class TestDeposito(unittest.TestCase):
     def setUp(self):
-        '''
-        self.cliente = Cliente(
-            nome="João da Silva",
-            cpf="12345678900",
-            email="joao@email.com"
-        ) '''
         self.conta = ContaBancaria(
             numero="12345",
             agencia="001",
             banco="Banco A",
             saldo=1000.0,
-            senha="1234",
-            # titular=self.cliente
+            senha="1234"
         )
 
     def test_deposito_valido(self):
@@ -34,13 +26,13 @@ class TestDeposito(unittest.TestCase):
         with self.assertRaises(ValueError):
             depositar(self.conta, valor_deposito)
 
-    # TODO: Tratar o caso de depósito com valor em string
+    # TODO: Verificar o motivo do erro de tipo_incorreto.
     def test_deposito_invalido_tipo_incorreto(self):
         """Teste para depósito com tipo de valor incorreto."""
-        valor_deposito = "200"  # Tipo incorreto (string)
+        valor_deposito = "120"  # Tipo incorreto (string)
         with self.assertRaises(ValueError) as context:
             depositar(self.conta, valor_deposito)
-        self.assertEqual(str(context.exception), "O valor do depósito deve ser um número válido.")
+        self.assertEqual(str(context.exception), "O valor deve ser um número válido.")
 
 if __name__ == "__main__":
     unittest.main()
