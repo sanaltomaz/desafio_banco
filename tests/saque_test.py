@@ -3,6 +3,8 @@ from app.models.conta import ContaBancaria
 from unittest.mock import patch
 from app.services.saque import sacar
 
+# python -m unittest tests.saque_test
+
 class TestSaque(TestCase):
     def setUp(self):
         self.conta = ContaBancaria(numero="12345", agencia="001", banco="Banco A", saldo=100.0, senha="1234")

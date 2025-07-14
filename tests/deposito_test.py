@@ -2,6 +2,8 @@ import unittest
 from app.models.conta import ContaBancaria
 from app.services.deposito import depositar
 
+# python -m unittest tests.deposito_test
+
 class TestDeposito(unittest.TestCase):
     def setUp(self):
         self.conta = ContaBancaria(

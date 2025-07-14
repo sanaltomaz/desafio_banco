@@ -2,6 +2,8 @@ import unittest
 from unittest.mock import patch, MagicMock
 from app.services.transferencia import transferir
 
+# python -m unittest tests.transferencia_test
+
 class ContaMock:
     def __init__(self, numero, saldo):
         self.numero = numero
