@@ -4,6 +4,8 @@ from app.services.saque import sacar
 from app.services.transferencia import transferir
 from app.validators.conta_validator import validar_dados_conta
 
+# Classe de modelo para Contas Bancárias
+
 class ContaBancaria:
     def __init__(self, numero, agencia, banco, saldo=0.0, limite=0.0, senha="", fatura=0.0):
         validar_dados_conta(numero, agencia, banco, saldo, limite, senha, fatura)  # Valida os dados da conta
@@ -11,8 +13,6 @@ class ContaBancaria:
         self.numero = numero
         self.agencia = agencia
         self.banco = banco
-        # self.titular = titular  # Instância da classe Cliente
-        # self.id_cliente = id_cliente if id_cliente is not None else titular.id  # Associa o id_cliente ao id do titular
         self.saldo = saldo
         self.limite = limite
         self.senha = senha

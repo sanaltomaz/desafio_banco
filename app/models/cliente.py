@@ -1,5 +1,6 @@
-import uuid
 from app.validators.clinte_validator import validar_dados_cliente
+
+# Classe de modelo para Clientes
 
 class Cliente:
     def __init__(self, nome, idade, cpf, email=None, telefone=None, id_cliente=None):

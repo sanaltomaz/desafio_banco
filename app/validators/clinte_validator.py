@@ -1,5 +1,6 @@
 import re
 
+# Valida os dados do cliente
 def validar_dados_cliente(nome, idade, cpf, email=None, telefone=None):
     if not nome or not isinstance(nome, str):
         raise ValueError("Nome do cliente é obrigatório e deve ser uma string.")

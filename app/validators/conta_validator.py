@@ -1,5 +1,6 @@
 # from app.models.cliente import Cliente
 
+# Valida os dados da conta bancária
 def validar_dados_conta(numero, agencia, banco, saldo, limite, senha, fatura):
     if not isinstance(numero, str) or not numero.isdigit():
         raise ValueError("Número da conta deve ser uma string numérica.")
