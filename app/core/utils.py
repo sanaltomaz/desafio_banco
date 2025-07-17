@@ -18,7 +18,7 @@ def transformar_valor(valor):
 def ler_dados(caminho):
     """Faz a leitura do caminho dos arquivos."""
     try:
-        with open(caminho, 'r', encoding='utf-8') as arquivo:
+        with open(caminho, 'r', encoding='UTF-8') as arquivo:
             return json.load(arquivo)
     except FileNotFoundError:
         raise FileNotFoundError("Arquivo não encontrado.")
@@ -27,8 +27,8 @@ def ler_dados(caminho):
     
 def escrever_dados(caminho, dados):
     try:
-        with open(caminho, 'w', encoding='utf-8') as f:
-            json.dump(dados, f, indent=4)
+        with open(caminho, 'w', encoding='UTF-8') as f:
+            json.dump(dados, f,ensure_ascii=False, indent=4)
     except (FileNotFoundError, PermissionError) as e:
         raise RuntimeError(f"Erro ao escrever no arquivo: {e}")
     except TypeError:
