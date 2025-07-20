@@ -7,7 +7,7 @@ from app.validators.conta_validator import validar_dados_conta
 # Classe de modelo para Contas Bancárias
 
 class ContaBancaria:
-    def __init__(self, numero, agencia, banco, saldo=0.0, limite=0.0, senha="", fatura=0.0):
+    def __init__(self, numero, agencia=0000, banco=000, saldo=0.0, limite=0.0, senha="", fatura=0.0):
         validar_dados_conta(numero, agencia, banco, saldo, limite, senha, fatura)  # Valida os dados da conta
         # Inicializa os atributos da conta bancária
         self.numero = numero
