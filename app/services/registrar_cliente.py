@@ -1,27 +1,56 @@
-# from app.core.utils import ler_dados
-from app.core.utils import escrever_dados
-from app.models.cliente import Cliente
-from app.core.class_para_obj import cliente_para_dict
+#conector do servidor
+import os 
+import psycopg2
+from dotenv import load_dotenv
 
-caminho = "app/data/clientes.json"
+load_dotenv()
 
-def registrar_cliente(dados=None):
-    if dados != None:
-        nome = dados.get("nome")
-        idade = dados.get("idade")
-        cpf = dados.get("cpf")
-        email = dados.get("email")
-        telefone = dados.get("telefone")
-    else:
-        cliente = Cliente(
-            nome=str(input("Nome: ")),
-            idade=int(input("Idade: ")),
-            cpf=str(input("CPF: ")),
-            email=str(input("Email: ")),
-            telefone=str(input("Telefone: "))
-        )
+database_URL = os.getenv("DATABASE_URL")
+
+conn = None
+cur = None
+
+try:
+    conn = psycopg2.connect(database_URL)
+    print("Conexão com o banco de dados Neon estabelecida com sucesso!")
+    nome = input("Digite o nome do cliente:")
+    idade = int(input("Digite a idade do cliente:"))
+    cpf = input("Digite o CPF do cliente:")
+    email = input("Digite o email do cliente:")
+    telefone = input("Digite o telefone do cliente:")
+
+    cur = conn.cursor()
+    cur.execute(
+        """
+         CREATE TABLE IF NOT EXISTS clientes (
+            id SERIAL PRIMARY KEY, -- SERIAL é o tipo de auto-incremento no PostgreSQL
+            nome TEXT NOT NULL,
+            idade INTEGER,
+            cpf TEXT UNIQUE,
+            email TEXT UNIQUE,
+            telefone TEXT
+        );
+        """,
         
-    cliente = Cliente(nome=nome, idade=idade, cpf=cpf, email=email, telefone=telefone)
-    dados = cliente_para_dict(cliente)
+    )
+    cur.execute(
+         """
+        INSERT INTO clientes(nome, idade, cpf, email, telefone)
+        VALUES (%s, %s, %s, %s, %s)
+        RETURNING id;""",
+        (nome, idade, cpf, email, telefone)
+    )
+    novo_id = cur.fetchone()[0]
+    conn.commit()
+    print("Dados inseridos com sucesso! ID do novo cliente:", novo_id)
+except Exception as e:
+    print(f"Erro: {e}")
+    conn.rollback()
+finally:
+    if cur:
+        cur.close()
+    if conn: 
+          conn.close()   
 
-    escrever_dados(caminho, dados)
+
+
