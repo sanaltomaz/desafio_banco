@@ -1,6 +1,6 @@
 # Desafio Banco 🏦💸
 
-Bem-vindo ao **Desafio Banco**, um projeto desenvolvido em Python para simular operações bancárias de forma simples, didática e extensível. Ideal para praticar conceitos de programação orientada a objetos, validação, autenticação e boas práticas de código.
+Bem-vindo ao **Desafio Banco**, um projeto desenvolvido em Python para simular operações bancárias de forma simples, didática e extensível. Ideal para praticar conceitos de programação orientada a objetos, validação, autenticação, integração com banco de dados SQL e boas práticas de código.
 
 ---
 
@@ -19,6 +19,7 @@ Bem-vindo ao **Desafio Banco**, um projeto desenvolvido em Python para simular o
 - Programação Orientada a Objetos (POO)
 - Decorators para autenticação
 - Estruturas de dados nativas
+- Testes automatizados com unittest/pytest
 
 ---
 
@@ -26,9 +27,11 @@ Bem-vindo ao **Desafio Banco**, um projeto desenvolvido em Python para simular o
 
 - 🛡️ Autenticação em dois fatores (2FA)
 - 📊 Relatórios e gráficos de movimentações financeiras
-- 🗄️ Integração com banco de dados para persistência
-- 🖥️ Menus interativos no terminal
+- 🗄️ Integração com banco de dados SQL para persistência
+- 🖥️ Menus interativos no terminal e interface web
 - 🔑 Sistema de chaves únicas para transferências
+- 📑 Exportação de extratos em PDF/CSV
+- 🌐 API RESTful para integração com sistemas externos
 
 ---
 
@@ -37,7 +40,7 @@ Bem-vindo ao **Desafio Banco**, um projeto desenvolvido em Python para simular o
 1. **Clone o repositório:**
 
    ```bash
-   git clone https://github.com/seu-usuario/desafio_banco.git
+   git clone https://github.com/sanaltomaz/desafio_banco.git
    ```
 
 2. **Acesse o diretório do projeto:**
@@ -46,7 +49,20 @@ Bem-vindo ao **Desafio Banco**, um projeto desenvolvido em Python para simular o
    cd desafio_banco
    ```
 
-3. **Execute o projeto:**
+3. **(Opcional) Crie e ative um ambiente virtual:**
+
+   ```bash
+   python3 -m venv venv
+   source venv/bin/activate
+   ```
+
+4. **Instale as dependências:**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+5. **Execute o projeto:**
 
    ```bash
    python3 main.py
@@ -54,9 +70,27 @@ Bem-vindo ao **Desafio Banco**, um projeto desenvolvido em Python para simular o
 
 ---
 
+## 🧪 Testes
+
+Para rodar os testes automatizados:
+
+```bash
+python -m unittest discover -s tests
+```
+
+ou, se estiver usando pytest:
+
+```bash
+pytest tests
+```
+
+---
+
 ## 🤝 Contribuição
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
+Contribuições são bem-vindas!  
+Abra uma issue para sugestões, melhorias ou reporte de bugs.  
+Envie seu pull request seguindo as boas práticas do projeto.
 
 ---
 
@@ -66,4 +100,4 @@ Este projeto está sob a licença MIT. Consulte o arquivo `LICENSE` para mais de
 
 ---
 
-> Feito com 💙 por [oTom](https://github.com/sanaltomaz)
+>
