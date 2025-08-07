@@ -1,7 +1,7 @@
 import re
 
 # Valida os dados do cliente
-def validar_dados_cliente(nome, idade, cpf, email=None, telefone=None):
+def validar_dados_cliente(nome, idade, cpf, email=None):
     if not nome or not isinstance(nome, str):
         raise ValueError("Nome do cliente é obrigatório e deve ser uma string.")
 
@@ -15,10 +15,5 @@ def validar_dados_cliente(nome, idade, cpf, email=None, telefone=None):
         padrao_email = r'^[\w\.-]+@[\w\.-]+\.\w+$'
         if not re.match(padrao_email, email):
             raise ValueError("E-mail inválido.")
-
-    if telefone:
-        padrao_telefone = r'^\d{10,11}$'
-        if not re.match(padrao_telefone, telefone):
-            raise ValueError("Telefone deve conter 10 ou 11 dígitos.")
 
     return True

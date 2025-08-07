@@ -1,9 +1,0 @@
-{
-    "numero": 451256,
-    "agencia": 1001,
-    "banco": 101,
-    "saldo": 1000.0,
-    "limite": 5000.0,
-    "senha": "senha123",
-    "fatura": 200.0
-}

@@ -5,21 +5,17 @@ from app.services.transferencia import transferir
 from app.validators.conta_validator import validar_dados_conta
 
 # Classe de modelo para Contas Bancárias
-
 class ContaBancaria:
-    def __init__(self, numero, agencia=0000, banco=000, saldo=0.0, limite=0.0, senha="", fatura=0.0):
-        validar_dados_conta(numero, agencia, banco, saldo, limite, senha, fatura)  # Valida os dados da conta
+    def __init__(self, saldo_conta=0.0, limite=0.0, senha_usuario="", fatura=0.0):
+        validar_dados_conta(saldo_conta, limite, senha_usuario, fatura)  # Valida os dados da conta
         # Inicializa os atributos da conta bancária
-        self.numero = numero
-        self.agencia = agencia
-        self.banco = banco
-        self.saldo = saldo
+        self.saldo_conta = saldo_conta
         self.limite = limite
-        self.senha = senha
+        self.senha_usuario = senha_usuario
         self.fatura = fatura
 
     def __str__(self):
-        return f"Conta {self.numero} - Agência {self.agencia} - Banco {self.banco}- Saldo: R${self.saldo:.2f} - Limite: R${self.limite:.2f} - Fatura: R${self.fatura:.2f}"
+        return f"Conta - Saldo: R${self.saldo_conta:.2f} - Limite: R${self.limite:.2f} - Fatura: R${self.fatura:.2f}"
 
     @validar_senha()  # Decorador para validar a senha antes de realizar operações
     def depositar(self, valor_deposito, senha="", usar_limite_flag=True):
